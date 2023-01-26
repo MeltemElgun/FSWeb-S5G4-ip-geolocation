@@ -1,26 +1,25 @@
 //axios import buraya gelecek
-
+import axios from "axios";
 var benimIP;
-
 
 // ------------ değiştirmeyin --------------
 // licensed to Ergineer 2022
 require("babel-core/register");
 require("babel-polyfill");
-async function ipAdresimiAl(){
-	await axios({
-		method: 'get',
-		url: 'https://apis.ergineer.com/ipadresim',
-	})
-	.then(function (response) {
-		return response.data
-	})
-	.then(function (a) {
-		benimIP=a
-	});
-}				
-// ------------ değiştirmeyin --------------
+async function ipAdresimiAl() {
+  await axios({
+    method: "get",
+    url: "https://apis.ergineer.com/ipadresim",
+  })
+    .then(function (response) {
+      return response.data;
+    })
+    .then(function (a) {
+      benimIP = a;
+    });
+}
 
+// ------------ değiştirmeyin --------------
 
 /*
 	ADIM 1: axios kullanarak, aşağıdaki URL'ye GET sorgusu atacağız
@@ -67,6 +66,51 @@ async function ipAdresimiAl(){
 	Örnek dinamik URL kullanımı: var url = "https://apis.ergineer.com/ipgeoapi/"+benimIP; 
 */
 
-
-
 //kodlar buraya gelecek
+let cards = document.querySelector(".cards");
+function cardAll(nesne) {
+  let cardDiv = document.createElement("div");
+  cardDiv.classList = "card";
+
+  let cardImg = document.createElement("img");
+  cardImg.src = "{ülke bayrağı url}";
+  cardDiv.appendChild(cardImg);
+
+  let cardDiv1 = document.createElement("div");
+  cardDiv1.classList = "card-info";
+  cardDiv.appendChild(cardDiv1);
+
+  let cardH3 = document.createElement("h3");
+  cardH3.classList = "ip";
+  cardH3.textContent = "{ip adresi}";
+  cardDiv.appendChild(cardH3);
+
+  let cardP = document.createElement("p");
+  cardP.classList = "ulke";
+  cardP.textContent = "{ülke bilgisi (ülke kodu)}";
+  cardDiv.appendChild(cardP);
+
+  let cardP1 = document.createElement("p");
+  cardP1.textContent = "{enlem} Boylam: {boylam}";
+  cardDiv.appendChild(cardP1);
+
+  let cardP2 = document.createElement("p");
+  cardP2.textContent = "Şehir: {şehir}";
+  cardDiv.appendChild(cardP2);
+
+  let cardP3 = document.createElement("p");
+  cardP3.textContent = "Saat dilimi: {saat dilimi}";
+  cardDiv.appendChild(cardP3);
+
+  let cardP4 = document.createElement("p");
+  cardP4.textContent = "Para birimi: {para birimi}";
+  cardDiv.appendChild(cardP4);
+
+  let cardP5 = document.createElement("p");
+  cardP5.textContent = "ISP: {isp}";
+  cardDiv.appendChild(cardP5);
+
+  return cardDiv;
+}
+
+cards.appendChild(cardAll(benimIP));
